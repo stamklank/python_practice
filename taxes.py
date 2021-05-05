@@ -1,6 +1,7 @@
 
 from os import system
-
+import locale
+locale.setlocale( locale.LC_ALL, '' )
 
 print( 
 """
@@ -187,8 +188,8 @@ You talentless dick, have you ever spent €{}- ?""".format(val))
     def check_information(self):
         print("""1. Your name is {}.
 2. Your age is {}.
-3. Your income over 2020 is €{}. 
-Is this correct? Y,N,N1,N2,N3""".format(self.name, self.age, self.income))
+3. Your income over 2020 is {}. 
+Is this correct? Y,N,N1,N2,N3""".format(self.name, self.age, locale.currency(self.income, grouping=True)))
         val = input()
 
         if val.upper() == "Y":
@@ -225,19 +226,15 @@ You can try again below you piece of shit:""")
         third_bracket = 0.4950 * (self.income - 68507)
         if self.income < 21044:
             print("""
-You paid €{} of taxes this year, you almost contributed to society in a meaningful way.""".format(str(first_bracket)))
+You paid {} of taxes this year, you almost contributed to society in a meaningful way.""".format(locale.currency(first_bracket), grouping=True))
         
         elif self.income < 68508:
             print("""
-You paid €{},- in 2020, the goverment is proud to deliver you its services.""".format(str(first_bracket_max+second_bracket)))
+You paid {} in 2020, the goverment is proud to deliver you its services.""".format(locale.currency(first_bracket_max+second_bracket), grouping=True))
         
         else:
             print("""
-You paid €{},-, maybe consider tax fraud?""".format(str(first_bracket_max+second_bracket_max+third_bracket)))
-        
-
-            
-            
+You paid {}, maybe consider tax fraud?""".format(locale.currency(first_bracket_max+second_bracket_max+third_bracket), grouping=True))         
 
             
 
